@@ -1,0 +1,56 @@
+# OpenDevin DeepSeek 配置示例
+# 复制此文件为 config.toml 并填入你的API密钥
+
+[llm]
+# DeepSeek模型配置
+model = "deepseek-chat"
+api_key = "your-deepseek-api-key-here"  # 请替换为你的实际API密钥
+base_url = "https://api.deepseek.com"
+
+# 可选的模型参数
+temperature = 0.1          # 控制输出的随机性 (0.0-1.0)
+max_output_tokens = 4000   # 最大输出token数
+top_p = 0.95              # 核采样参数
+timeout = 60              # API请求超时时间(秒)
+
+# 重试配置
+num_retries = 3           # 失败重试次数
+retry_min_wait = 1        # 最小重试等待时间(秒)
+retry_max_wait = 10       # 最大重试等待时间(秒)
+
+# 成本追踪 (可选)
+input_cost_per_token = 0.0000014   # DeepSeek输入token成本
+output_cost_per_token = 0.0000028  # DeepSeek输出token成本
+
+[core]
+# 核心配置
+workspace_base = "./workspace"              # 工作目录
+max_iterations = 50                         # 最大迭代次数
+max_budget_per_task = 1.0                  # 每个任务最大预算(美元)
+enable_auto_lint = false                   # 是否启用自动代码检查
+enable_cli_session = true                 # 是否启用CLI会话保存
+
+# 文件上传配置
+file_uploads_max_file_size_mb = 10         # 最大文件上传大小(MB)
+file_uploads_allowed_extensions = [".*"]   # 允许的文件扩展名
+
+[agent]
+# 代理配置
+name = "CodeActAgent"     # 使用的代理类型
+memory_enabled = false    # 是否启用长期记忆
+memory_max_threads = 2    # 记忆索引最大线程数
+
+[sandbox]
+# 沙盒配置
+box_type = "ssh"                                    # 沙盒类型 (ssh, e2b, local)
+container_image = "ghcr.io/opendevin/sandbox:main" # 容器镜像
+timeout = 120                                       # 沙盒超时时间(秒)
+user_id = 1000                                     # 用户ID (Linux/Mac)
+
+# SSH配置 (当box_type为ssh时)
+ssh_hostname = "localhost"
+ssh_port = 63710
+# ssh_password = ""  # 如果需要密码认证
+
+# 网络配置
+use_host_network = false   # 是否使用主机网络
