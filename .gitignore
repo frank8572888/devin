@@ -217,3 +217,13 @@ containers/agnostic_sandbox
 # swe-bench-eval
 image_build_logs
 run_instance_logs
+
+# devin2 specific
+/tmp/devin2_*
+devin2/*.csv
+devin2/*.txt
+devin2/result.txt
+devin2/hello.txt
+devin2/demo_result.txt
+devin2/sample_data.csv
+devin2/test_file.txt
